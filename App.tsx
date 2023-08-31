@@ -1,36 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, {useEffect, useState} from 'react';
-import {
-    ActivityIndicator,
-    FlatList,
-    Image,
-    Text,
-    View
-} from 'react-native';
-
-type Photo = {
-    albumId: int,
-    id: int,
-    title: string,
-    url: string,
-    thumbnailUrl: string
-};
+import Photo from './src/model/Photo';
+import HomeScreen from './src/ui/HomeScreen';
 
 const App = () => {
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState<Photo[]>([]);
+    const [photos, setPhotos] = useState<Photo[]>([]);
 
     const getPhotos = async () => {
         try {
             const response = await fetch('https://jsonplaceholder.typicode.com/photos');
-            const json = await response.json();
-            setData(json);
+            const photos = await response.json();
+            setPhotos(photos);
         } catch (e) {
             console.error(e);
         } finally {
@@ -42,22 +22,7 @@ const App = () => {
         getPhotos();
     }, []);
 
-    return (
-        <View style={{flex: 1}}>
-            <FlatList
-                data={data}
-                renderItem={({item}) =>
-                    <View style={{flexDirection: 'row'}}>
-                        <Image
-                            source={{uri: item.thumbnailUrl}}
-                            style={{width: 80, height: 80}}
-                        />
-                        <Text style={{padding:8, fontSize:15}}>{item.title}</Text>
-                    </View>
-                }
-            />
-        </View>
-    );
+    return <HomeScreen photos={photos} />;
 }
 
 export default App;
