@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {
     ActivityIndicator,
     FlatList,
-    Image,
     Text,
     View
 } from 'react-native';
 import HomeState from './HomeState';
+import PhotoItem from './PhotoItem';
 
 const HomeScreen = () => {
     console.debug('HomeScreen()');
@@ -35,13 +35,7 @@ const HomeScreen = () => {
                     <FlatList
                         data={homeState.photos}
                         renderItem={({item}) =>
-                            <View style={{flexDirection: 'row'}}>
-                                <Image
-                                    source={{uri: item.thumbnailUrl}}
-                                    style={{width: 80, height: 80}}
-                                />
-                                <Text style={{padding:8, fontSize:15}}>{item.title}</Text>
-                            </View>
+                            <PhotoItem item={item} />
                         }
                     />
                 </View>
