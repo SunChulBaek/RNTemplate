@@ -1,6 +1,6 @@
 import Photo from '../model/Photo';
 
-class HomeState {
+class Tab1State {
     isLoading: boolean;
     photos: Photo[]
 
@@ -10,4 +10,4 @@ class HomeState {
     }
 }
 
-export default HomeState;
+export default Tab1State;

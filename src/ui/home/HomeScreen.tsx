@@ -1,42 +1,39 @@
-import React, {useEffect, useState} from 'react';
-import {
-    ActivityIndicator,
-    FlatList,
-    Text,
-    View
-} from 'react-native';
-import {selector, useRecoilValueLoadable} from 'recoil';
-import HomeState from '../../model/HomeState';
-import getHomeStateSelector from '../../selector/GetHomeStateSelector';
-import PhotoItem from './PhotoItem';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Tab1Screen from './tab1/Tab1Screen';
+import Tab2Screen from './tab2/Tab2Screen';
+import Tab3Screen from './tab3/Tab3Screen';
+import Tab4Screen from './tab4/Tab4Screen';
 
-const HomeScreen = ({navigation}) => {
-    console.debug('HomeScreen()');
-    const homeState = useRecoilValueLoadable(getHomeStateSelector);
+const Tab = createBottomTabNavigator();
 
-    if (homeState == null || homeState == undefined) {
-        return (<Text>Init...</Text>);
-    }
-
-    switch(homeState.state) {
-        case 'loading':
-            return (<Text>Loading...</Text>);
-        case 'hasValue':
-            return (
-                <View style={{flex: 1}}>
-                    <FlatList
-                        data={homeState.contents.photos}
-                        renderItem={({item}) =>
-                            <PhotoItem navigation={navigation} item={item} />
-                        }
-                    />
-                </View>
-            );
-        case 'hasError':
-            return (<Text>Error...</Text>);
-        default:
-            return (<Text>XXX</Text>);
-    }
+const HomeScreen = () => {
+    return (
+        <Tab.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+                    if (route.name === '탭1') {
+                        iconName = focused ? 'home' : 'home-outline';
+                    } else if (route.name === '탭2') {
+                        iconName = focused ? 'search' : 'search-outline';
+                    } else if (route.name === '탭3') {
+                        iconName = focused ? 'camera' : 'camera-outline';
+                    } else if (route.name === '탭4') {
+                        iconName = focused ? 'settings' : 'settings-outline';
+                    }
+                    return (<Ionicons name={iconName} size={size} color={color} />);
+                },
+                tabBarActiveTintColor: 'blue',
+                tabBarInactiveTintColor: 'gray'
+            })}
+        >
+            <Tab.Screen name="탭1" component={Tab1Screen} options={{headerShown: false}} />
+            <Tab.Screen name="탭2" component={Tab2Screen} options={{headerShown: false}} />
+            <Tab.Screen name="탭3" component={Tab3Screen} options={{headerShown: false}} />
+            <Tab.Screen name="탭4" component={Tab4Screen} options={{headerShown: false}} />
+        </Tab.Navigator>
+    );
 }
 
 export default HomeScreen;

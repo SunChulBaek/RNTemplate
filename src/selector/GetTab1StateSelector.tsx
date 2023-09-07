@@ -1,18 +1,18 @@
 import {selector} from 'recoil';
 import getPhotosSelector from './GetPhotosSelector';
-import HomeState from '../model/HomeState';
+import Tab1State from '../model/Tab1State';
 
-const getHomeStateSelector = selector({
+const getTab1StateSelector = selector({
     key: 'getHomeState',
     get: async ({get}) => {
         console.debug('getHomeStateSelector()');
         const photos = get(getPhotosSelector);
         if (photos != undefined) {
-            return new HomeState(false, photos);
+            return new Tab1State(false, photos);
         } else {
-            return new HomeState(true, []);
+            return new Tab1State(true, []);
         }
     }
 });
 
-export default getHomeStateSelector;
+export default getTab1StateSelector;
