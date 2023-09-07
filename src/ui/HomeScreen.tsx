@@ -6,11 +6,11 @@ import {
     View
 } from 'react-native';
 import {selector, useRecoilValueLoadable} from 'recoil';
-import HomeState from '../../model/HomeState';
-import getHomeStateSelector from '../../selector/GetHomeStateSelector';
+import HomeState from '../model/HomeState';
+import getHomeStateSelector from '../selector/GetHomeStateSelector';
 import PhotoItem from './PhotoItem';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
     console.debug('HomeScreen()');
     const homeState = useRecoilValueLoadable(getHomeStateSelector);
 
@@ -27,7 +27,7 @@ const HomeScreen = ({navigation}) => {
                     <FlatList
                         data={homeState.contents.photos}
                         renderItem={({item}) =>
-                            <PhotoItem navigation={navigation} item={item} />
+                            <PhotoItem item={item} />
                         }
                     />
                 </View>
