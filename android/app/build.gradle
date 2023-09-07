@@ -87,13 +87,13 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 android {
     ndkVersion rootProject.ext.ndkVersion
 
-    compileSdkVersion buildProp["compileSdk"].toInteger()
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.rntemplate"
     defaultConfig {
         applicationId buildProp["applicationId"]
-        minSdkVersion buildProp["minSdk"].toInteger()
-        targetSdkVersion buildProp["targetSdk"].toInteger()
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode buildProp["versionCode"].toInteger()
         versionName buildProp["versionName"]
     }
