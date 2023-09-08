@@ -21,7 +21,12 @@ const Tab1Screen = ({navigation}) => {
 
     switch(tab1State.state) {
         case 'loading':
-            return (<Text>Loading...</Text>);
+            return (
+                <View
+                    style={{flex: 1, alignContent: 'center', justifyContent: 'center'}}>
+                    <ActivityIndicator size='large' />
+                </View>
+            );
         case 'hasValue':
             return (
                 <View style={{flex: 1}}>
