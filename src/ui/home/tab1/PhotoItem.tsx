@@ -3,6 +3,7 @@ import {
     Text,
     TouchableOpacity
 } from 'react-native';
+import MyImage from '../../common/MyImage';
 
 const PhotoItem = ({navigation, item}) => {
     return (
@@ -15,10 +16,9 @@ const PhotoItem = ({navigation, item}) => {
                 });
             }}
         >
-            <Image
-                source={{uri: item.thumbnailUrl}}
+            <MyImage
                 style={{width: 80, height: 80}}
-            />
+                source={{uri: item.thumbnailUrl}} />
             <Text style={{padding:8, fontSize:15}}>{item.title}</Text>
         </TouchableOpacity>
     );
