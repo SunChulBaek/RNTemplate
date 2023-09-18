@@ -10,14 +10,21 @@ import HomeState from '../../../model/Tab1State';
 import getTab1StateSelector from '../../../selector/GetTab1StateSelector';
 import PhotoItem from './PhotoItem';
 import PhotoScreen from '../../photo/PhotoScreen';
+import repository from '../../../domain/PhotoRepository';
+import Tab1State from '../../../model/Tab1State';
 
 const Tab1Screen = ({navigation}) => {
-    console.debug('Tab1Screen()');
-    const tab1State = useRecoilValueLoadable(getTab1StateSelector);
+    const [tab1State, setTab1State] = useState(new Tab1State('loading', []));
+    console.debug(`Tab1Screen(${tab1State.state})`);
 
-    if (tab1State == null || tab1State == undefined) {
-        return (<Text>Init...</Text>);
+    const getPhotos = async () => {
+        const photos = await repository.getPhotos();
+        setTab1State(new Tab1State('hasValue', photos));
     }
+
+    useEffect(() => {
+        getPhotos();
+    }, []);
 
     switch(tab1State.state) {
         case 'loading':
@@ -31,7 +38,7 @@ const Tab1Screen = ({navigation}) => {
             return (
                 <View style={{flex: 1}}>
                     <FlatList
-                        data={tab1State.contents.photos}
+                        data={tab1State.photos}
                         renderItem={({item}) =>
                             <PhotoItem navigation={navigation} item={item} />
                         }

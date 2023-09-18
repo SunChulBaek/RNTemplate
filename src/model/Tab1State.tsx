@@ -1,11 +1,11 @@
 import Photo from '../model/Photo';
 
 class Tab1State {
-    isLoading: boolean;
-    photos: Photo[]
+    state: string;
+    photos: Photo[];
 
-    constructor(isLoading: boolean, photos: Photo[]) {
-        this.isLoading = isLoading;
+    constructor(state: string, photos: Photo[]) {
+        this.state = state;
         this.photos = photos;
     }
 }
