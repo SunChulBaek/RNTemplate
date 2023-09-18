@@ -6,12 +6,11 @@ import {
     View
 } from 'react-native';
 import {selector, useRecoilValueLoadable} from 'recoil';
-import HomeState from '../../../model/Tab1State';
+import Tab1State from './Tab1State';
 import getTab1StateSelector from '../../../selector/GetTab1StateSelector';
 import PhotoItem from './PhotoItem';
 import PhotoScreen from '../../photo/PhotoScreen';
 import repository from '../../../domain/PhotoRepository';
-import Tab1State from '../../../model/Tab1State';
 
 const Tab1Screen = ({navigation}) => {
     const [tab1State, setTab1State] = useState(new Tab1State('loading', []));

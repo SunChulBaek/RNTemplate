@@ -8,7 +8,7 @@ import MyImage from '../../common/MyImage';
 const PhotoItem = ({navigation, item}) => {
     return (
         <TouchableOpacity
-            style={{flexDirection: 'row'}}
+            style={{flexDirection: 'row', backgroundColor: 'white'}}
             onPress={() => {
                 navigation.navigate('Photo', {
                     url: item.url,
@@ -19,7 +19,7 @@ const PhotoItem = ({navigation, item}) => {
             <MyImage
                 style={{width: 80, height: 80}}
                 source={{uri: item.thumbnailUrl}} />
-            <Text style={{padding:8, fontSize:15}}>{item.title}</Text>
+            <Text style={{padding:8, fontSize:15, color: 'black'}}>{item.title}</Text>
         </TouchableOpacity>
     );
 }
