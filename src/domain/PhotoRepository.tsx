@@ -1,12 +1,16 @@
 import Photo from '../model/Photo';
-import network from '../network/PhotoNetworkDataSource';
+import NetworkDataSource from '../network/NetworkDataSource';
+import PhotoNetworkDataSource from '../network/PhotoNetworkDataSource';
 
-const PhotoRepository = {
-    getPhotos: async(): Photos[] => {
-       console.debug('getPhotosSelector()');
-       const photos = await network.getPhotos();
-       return photos;
-   }
+class PhotoRepository {
+
+    private network: NetworkDataSource = new PhotoNetworkDataSource();
+
+    public async getPhotos() {
+        console.debug('getPhotosSelector()');
+        const photos = await this.network.getPhotos();
+        return await Promise.resolve(photos);
+    }
 }
 
 export default PhotoRepository;
