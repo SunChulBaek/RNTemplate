@@ -10,14 +10,15 @@ import Tab1State from './Tab1State';
 import getTab1StateSelector from '../../../selector/GetTab1StateSelector';
 import PhotoItem from './PhotoItem';
 import PhotoScreen from '../../photo/PhotoScreen';
-import PhotoRepository from '../../../domain/PhotoRepository';
+import PhotoRepository from '../../../repository/PhotoRepository';
+import NetworkPhotoRepository from '../../../repository/NetworkPhotoRepository';
 
 const Tab1Screen = ({navigation}) => {
     const [tab1State, setTab1State] = useState(new Tab1State('loading', []));
     console.debug(`Tab1Screen(${tab1State.state})`);
 
     const getPhotos = async () => {
-        const repository = new PhotoRepository();
+        const repository: PhotoRepository = new NetworkPhotoRepository();
         const photos = await repository.getPhotos();
         setTab1State(new Tab1State('hasValue', photos));
     }
