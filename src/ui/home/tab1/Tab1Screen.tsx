@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import Tab1ViewModel from './Tab1ViewModel';
 import Tab1State from './Tab1State';
-import PhotoItem from './PhotoItem';
 
 const Tab1Screen = ({navigation}) => {
     const [tab1State, setTab1State] = useState(new Tab1State('loading', []));
@@ -30,9 +29,9 @@ const Tab1Screen = ({navigation}) => {
             return (
                 <View style={{flex: 1}}>
                     <FlatList
-                        data={tab1State.photos}
-                        renderItem={({item}) =>
-                            <PhotoItem navigation={navigation} item={item} />
+                        data={tab1State.items}
+                        renderItem={({item, index, separators}) =>
+                            item.itemContent({navigation: navigation})
                         }
                     />
                 </View>

@@ -19,7 +19,6 @@ class NetworkPhotoRepository implements PhotoRepository {
     private network: NetworkDataSource = new FetchPhotoNetwork();
 
     public async getPhotos(): Promise<Photo[]> {
-        console.debug('getPhotosSelector()');
         const photos = await this.network.getPhotos();
         return await Promise.resolve(photos);
     }

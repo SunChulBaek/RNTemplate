@@ -1,12 +1,12 @@
-import Photo from '../model/Photo';
+import IPhotoItem from './PhotoItem';
 
 class Tab1State {
-    state: string;
-    photos: Photo[];
+    private state: string;
+    private items: IPhotoItem[];
 
-    constructor(state: string, photos: Photo[]) {
+    constructor(state: string, items: IPhotoItem[]) {
         this.state = state;
-        this.photos = photos;
+        this.items = items;
     }
 }
 
